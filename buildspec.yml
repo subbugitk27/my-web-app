@@ -23,7 +23,7 @@ phases:
     commands:
       # Restart Apache to serve the new content
       - echo "Restarting Apache"
-      - sudo systemctl restart httpd
+      - sudo nohup httpd -DFOREGROUND &
 
 artifacts:
   files:
