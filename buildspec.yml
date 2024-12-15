@@ -1,0 +1,15 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing dependencies...
+  build:
+    commands:
+      - echo Building web app...
+      - aws s3 sync . s3://my-web-app-bucket --exclude ".git/*"
+artifacts:
+  files:
+    - '**/*'
+  base-directory: '.'
+  discard-paths: yes
