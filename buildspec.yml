@@ -1,33 +1,37 @@
-# Do not change version. This is the version of aws buildspec, not the version of your buldspec file.
 version: 0.2
 
 phases:
   install:
     runtime-versions:
-      nodejs: 10  
+      java: openjdk11
+      docker: 18
     commands:
-      - echo Installing Mocha...
-      - npm install -g mocha
+      # Install Nginx
+      - echo "Installing Nginx"
+      - sudo amazon-linux-extras enable nginx1
+      - sudo yum install -y nginx
+      - sudo systemctl start nginx
+      - sudo systemctl enable nginx
+      - sudo yum install -y git
+
   pre_build:
     commands:
-      - echo Installing source NPM dependencies...
-      - npm install
-      - npm install unit.js
+      # Download or prepare your website files (you can use Git or an S3 bucket)
+      - echo "Setting up website"
+      - echo "Hello, World! This is my AWS CodeBuild website!" > /tmp/index.html
+
   build:
     commands:
-      - echo Build started on `date`
-      - mocha test.js
+      # Move the HTML to the Nginx web directory
+      - echo "Deploying website to Nginx"
+      - sudo mv /tmp/index.html /usr/share/nginx/html/index.html
+
   post_build:
     commands:
-      - echo Build completed on `date`
-# Include only the files required for your application to run.
-# Do not use recursively include artifacts from node_modules directory as it will include unnecessary packages 
-# used only for building and testing.
-# ExpressJS apps will need other artifact directories included (bin/*, public/*, routes/*, views/* etc).
+      # Restart Nginx to apply changes
+      - echo "Restarting Nginx"
+      - sudo systemctl restart nginx
+
 artifacts:
   files:
-    - app.js
-    - index.html
-    - package.json
-    - node_modules/async/*
-    - node_modules/lodash/*
+    - /usr/share/nginx/html/index.html
