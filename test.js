@@ -1,10 +1,6 @@
-/*************Test******************/
-var test = require('unit.js');
-var str = 'Hello, world!';
-
-test.string(str).startsWith('Hello');
-
-if (test.string(str).startsWith('Hello')) {
-  console.log('Passed');
-}
-/***********************************/
+const assert = require('assert');
+describe('Sample Test', function() {
+  it('should pass', function() {
+    assert.strictEqual(1 + 1, 2);
+  });
+});
