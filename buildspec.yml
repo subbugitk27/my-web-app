@@ -2,36 +2,29 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-      java: openjdk11
-      docker: 18
     commands:
-      # Install Nginx
-      - echo "Installing Nginx"
-      - sudo amazon-linux-extras enable nginx1
-      - sudo yum install -y nginx
-      - sudo systemctl start nginx
-      - sudo systemctl enable nginx
-      - sudo yum install -y git
+      # Install Apache
+      - echo "Installing Apache HTTP Server"
+      - sudo yum install -y httpd
 
   pre_build:
     commands:
-      # Download or prepare your website files (you can use Git or an S3 bucket)
+      # Set up or fetch your website files (example here with a simple file)
       - echo "Setting up website"
-      - echo "Hello, World! This is my AWS CodeBuild website!" > /tmp/index.html
+      - echo "Welcome to my CodeBuild deployed website!" > /tmp/index.html
 
   build:
     commands:
-      # Move the HTML to the Nginx web directory
-      - echo "Deploying website to Nginx"
-      - sudo mv /tmp/index.html /usr/share/nginx/html/index.html
+      # Move the HTML content to the Apache web root
+      - echo "Deploying website to Apache"
+      - sudo mv /tmp/index.html /var/www/html/index.html
 
   post_build:
     commands:
-      # Restart Nginx to apply changes
-      - echo "Restarting Nginx"
-      - sudo systemctl restart nginx
+      # Restart Apache to serve the new content
+      - echo "Restarting Apache"
+      - sudo systemctl restart httpd
 
 artifacts:
   files:
-    - /usr/share/nginx/html/index.html
+    - /var/www/html/index.html
