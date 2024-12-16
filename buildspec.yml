@@ -5,7 +5,7 @@ phases:
     commands:
       # Move the HTML content to the Apache web root
       - echo "Deploying website to Apache"
-       - echo "Welcome to my CodeBuild deployed website!" > ./index.html
+      - echo "Welcome to my CodeBuild deployed website!" > ./index.html
   artifacts:
   files:
     - ./index.html
