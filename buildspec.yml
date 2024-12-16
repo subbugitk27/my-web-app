@@ -1,30 +1,11 @@
 version: 0.2
 
 phases:
-  install:
-    commands:
-      # Install Apache
-      - echo "Installing Apache HTTP Server"
-      - sudo yum install -y httpd
-
-  pre_build:
-    commands:
-      # Set up or fetch your website files (example here with a simple file)
-      - echo "Setting up website"
-      - echo "Welcome to my CodeBuild deployed website!" > /tmp/index.html
-
   build:
     commands:
       # Move the HTML content to the Apache web root
       - echo "Deploying website to Apache"
-      - sudo mv /tmp/index.html /var/www/html/index.html
-
-  post_build:
-    commands:
-      # Restart Apache to serve the new content
-      - echo "Restarting Apache"
-      - sudo nohup httpd -DFOREGROUND &
-
-artifacts:
+       - echo "Welcome to my CodeBuild deployed website!" > ./index.html
+  artifacts:
   files:
-    - /tmp/index.html
+    - ./index.html
