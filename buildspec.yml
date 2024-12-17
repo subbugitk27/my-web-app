@@ -1,6 +1,19 @@
 version: 0.2
+<<<<<<< HEAD
 artifacts:
  files:
    - '**/*'  # Include all files and subdirectories
  base-directory: .  # Root directory where files are collected
  discard-paths: no  # Retain original file paths
+=======
+
+phases:
+  build:
+    commands:
+      # Move the HTML content to the Apache web root
+      - echo "Deploying website to Apache"
+      - echo "Welcome to my CodeBuild deployed website!" > ./index.html
+artifacts:
+  files:
+    - ./index.html
+>>>>>>> 4894a7aaa07898d61e33d113fa42537c5545d768
