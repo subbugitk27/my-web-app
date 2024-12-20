@@ -2,6 +2,6 @@ version: 0.2
 artifacts:
  files:
    - '**/*'  # Include all files and subdirectories
- base-directory: .  # Root directory where files are collected
+ 
  discard-paths: no  # Retain original file paths
 
