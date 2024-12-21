@@ -1,8 +1,7 @@
 version: 0.2
 
 
-artifacts: {}  # Explicitly defining artifacts as an empty map
-
+artifacts: null
 files:
   - "**/*"
 
