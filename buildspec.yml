@@ -9,8 +9,8 @@ phases:
   pre_build:
     commands:
       - echo starting httpd service..
-      - sudo systemctl start httpd
-      - sudo systemctl enable httpd
+      - cd /usr/sbin/
+      - ./httpd -k start
 
   build:
     commands:
