@@ -30,7 +30,7 @@ phases:
       - sudo systemctl enable httpd
       - sudo service httpd status  # Confirm the server is running post-restart
 
-artifacts: null
+artifacts: {}  # Explicitly defining artifacts as an empty map
 
 files:
   - "**/*"
