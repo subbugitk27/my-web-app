@@ -3,27 +3,28 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo "Installing Apache HTTP Server..."
+      - echo Installing Apache HTTP Server...
       - sudo yum update -y
       - sudo yum install -y httpd
-
+      - sudo service httpd start
+      - echo httpd started successfully 
   pre_build:
     commands:
-      - echo "Starting HTTPD server..."
-      - sudo service httpd start
-
+      - echo Starting HTTPD server...
+      - echo Verifying HTTPD installation...
+      - sudo service httpd status
   build:
     commands:
-      - echo "Verifying HTTPD installation..."
-      - sudo service httpd status
-
-  post_build:
+      - echo buils starting on 'date'
+      - sudo mkdir -p /var/www/html
+      - cp *.html *.php /var/www/html/ #copy the all .html and .php files
+  post_build: 
     commands:
-      - echo "HTTPD installation complete."
-      - echo "HTTPD service running: $(sudo service httpd status)"
+      - echo Configuring HTTPD...
+      - sudo service httpd restart
       - sudo systemctl enable httpd  # Ensure httpd starts on reboot
-  artifacts: null
+artifacts: null
   files:
-    - "**/*"
-
+    - '**/*'  #Include all files 
+ discard-paths: no
 
