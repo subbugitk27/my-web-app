@@ -1,24 +1,27 @@
----
 version: 0.2
+
 phases:
   install:
     commands:
-      - echo Installing httpd...
+      - echo "Installing Apache HTTP Server..."
       - sudo yum update -y
       - sudo yum install -y httpd
+
   pre_build:
     commands:
-      - echo Starting HTTPD server...
+      - echo "Starting HTTPD server..."
       - sudo service httpd start
+
   build:
     commands:
-      - echo Verifying httpd installation...
+      - echo "Verifying HTTPD installation..."
       - sudo service httpd status
+
   post_build:
     commands:
-      - echo httpd installation complete.
-      - echo HTTPD service running: $(sudo service httpd status)
-      - sudo systemctl enable httpd
+      - echo "HTTPD installation complete."
+      - echo "HTTPD service running: $(sudo service httpd status)"
+      - sudo systemctl enable httpd  # Ensure httpd starts on reboot
   artifacts: null
   files:
     - "**/*"
