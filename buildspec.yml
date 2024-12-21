@@ -1,30 +1,5 @@
 version: 0.2
 
-phases:
-  install:
-    commands:
-      - echo Installing NGINX
-      - sudo yum update -y
-      - sudo yum install -y nginx #Installing NGINX package
-      - sudo systemctl restart nginx
-
-  pre_build:
-    commands:
-      - echo Checking Nginx configuration 
-      - sudo nginx -t # Test the Nginx Configuration
-      - echo NGINX Started Successfully
-
-  build:
-    commands:
-      - echo Build starting on 'date'
-      - sudo mkdir -p /var/www/html
-      - cp *.html /var/www/html/
-      - echo Build completed and files copied successfully
-
-  post_build:
-    commands:
-      - echo Configuring NGINX...
-      - sudo nginx -s reload  # Confirm the server is running post-restart
 
 artifacts: {}  # Explicitly defining artifacts as an empty map
 
