@@ -19,9 +19,9 @@ version: 0.2
         - echo httpd installation complete.
         - echo HTTPD service running: $(sudo service httpd status)
         - sudo systemctl enable httpd    # Ensure httpd starts on reboot
-artifacts:
- files:
-   - '**/*'  # Include all files and subdirectories
+  artifacts:
+    files:
+       - '**/*'  # Include all files and subdirectories
  
- discard-paths: no  # Retain original file paths
+    discard-paths: no  # Retain original file paths
 
