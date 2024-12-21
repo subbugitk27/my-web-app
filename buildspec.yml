@@ -5,11 +5,11 @@ phases:
     commands:
       - echo Installing Apache HTTPD
       - sudo yum update -y
-      - sudo yum install -y httpd  # installing httpd server
+      - sudo yum install -y httpd
   pre_build:
     commands:
       - echo Starting HTTPD server...
-      - sudo nohup systemctl restart httpd &
+      - sudo systemctl restart httpd &
       - echo HTTPD started successfully
 
   build:
