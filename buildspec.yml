@@ -1,8 +1,5 @@
 version: 0.2
-
-
 artifacts: null
-files:
+ files:
   - "**/*"
-
-discard-paths: no
+ discard-paths: no
