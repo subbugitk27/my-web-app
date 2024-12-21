@@ -3,26 +3,27 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo Installing Apache HTTPD
+      - echo Installing NGINX
       - sudo yum update -y
-      - sudo yum install -y httpd
+      - sudo yum install -y nginx #Installing NGINX package
+
   pre_build:
     commands:
-      - echo Starting HTTPD server...
-      - sudo systemctl restart httpd &
-      - echo HTTPD started successfully
+      - echo Checking Nginx configuration 
+      - sudo nginx -t # Test the Nginx Configuration
+      - echo NGINX Started Successfully
 
   build:
     commands:
       - echo Build starting on 'date'
       - sudo mkdir -p /var/www/html
       - cp *.html /var/www/html/
-      - echo Build completed and files copied
+      - echo Build completed and files copied successfully
 
   post_build:
     commands:
-      - echo Configuring HTTPD...
-      - sudo service httpd status  # Confirm the server is running post-restart
+      - echo Configuring NGINX...
+      - sudo nginx -s reload  # Confirm the server is running post-restart
 
 artifacts: {}  # Explicitly defining artifacts as an empty map
 
