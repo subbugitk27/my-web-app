@@ -15,7 +15,6 @@ phases:
   build:
     commands:
       - echo Building the application...
-      - sudo mkdir -p /var/www/html
       - cp *.html /var/www/html/
       - echo application file copied successfully
 
