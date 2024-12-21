@@ -9,7 +9,7 @@ phases:
   pre_build:
     commands:
       - echo Starting HTTPD server...
-      - sudo systemctl restart httpd
+      - sudo nohup systemctl restart httpd &
       - echo HTTPD started successfully
 
   build:
