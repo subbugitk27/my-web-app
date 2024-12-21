@@ -20,10 +20,10 @@ phases:
   post_build:
     commands:
       - echo "HTTPD installation complete."
+      - echo "HTTPD service running: $(sudo service httpd status)"
       - sudo systemctl enable httpd  # Ensure httpd starts on reboot
   artifacts: null
   files:
     - "**/*"
-  discard-paths: no
 
 
